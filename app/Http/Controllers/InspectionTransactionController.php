@@ -52,7 +52,8 @@ class InspectionTransactionController extends Controller
             }
         }
 
-        $inspectionTransactions = $query->get();
+        // Implement backend pagination with 10 items per page
+        $inspectionTransactions = $query->orderBy('created_at', 'desc')->paginate(10);
         $tireTypes = TireType::all();
 
         return view('inspection-transactions.index', compact('inspectionTransactions', 'tireTypes'));

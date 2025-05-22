@@ -37,8 +37,11 @@
 
                     <div class="form-group mb-4">
                         <label for="is_active">Is Active:</label>
-                        <input type="checkbox" class="form-check-input" id="is_active" name="is_active" value="1"
-                            <?php echo e(old('is_active') ? 'checked' : ''); ?>>
+                        <div class="responsive-checkbox-wrapper">
+                            <input type="checkbox" class="form-check-input" id="is_active" name="is_active" value="1"
+                                <?php echo e(old('is_active') ? 'checked' : ''); ?>>
+                            <label class="form-check-label" for="is_active">User account is active</label>
+                        </div>
                     </div>
 
                     <div class="form-group mb-4">
@@ -61,7 +64,10 @@ endif;
 unset($__errorArgs, $__bag); ?>
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Create</button>
+                    <div class="d-flex flex-column flex-md-row gap-2 mt-4">
+                        <button type="submit" class="btn btn-primary">Create</button>
+                        <a href="<?php echo e(route('users.index')); ?>" class="btn btn-secondary">Cancel</a>
+                    </div>
                 </form>
             </div>
         </div>

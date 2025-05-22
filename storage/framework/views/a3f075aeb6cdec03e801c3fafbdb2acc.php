@@ -7,6 +7,7 @@
 <link rel="stylesheet" type="text/css" href="<?php echo e(asset('src/plugins/css/dark/table/datatable/responsive.bootstrap5.min.css')); ?>">
 <link rel="stylesheet" type="text/css" href="<?php echo e(asset('src/assets/css/responsive-table.css')); ?>">
 <link rel="stylesheet" type="text/css" href="<?php echo e(asset('src/assets/css/filter-column.css')); ?>">
+<link rel="stylesheet" type="text/css" href="<?php echo e(asset('src/assets/css/pagination.css')); ?>">
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>
@@ -174,6 +175,11 @@
                         </tbody>
                     </table>
                     </div>
+                    <div class="pagination-wrapper">
+                        <?php echo $__env->make('vendor.pagination.info', ['paginator' => $inspectionTransactions], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+                        <?php echo e($inspectionTransactions->appends(request()->query())->links()); ?>
+
+                    </div>
                 </div>
             </div>
         </div>
@@ -201,14 +207,17 @@
                     "sPrevious": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>',
                     "sNext": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>'
                 },
-                "sInfo": "Showing page _PAGE_ of _PAGES_",
+                "sInfo": "Showing _START_ to _END_ of _TOTAL_ entries",
                 "sLengthMenu": "Results :  _MENU_",
             },
             "stripeClasses": [],
-            "lengthMenu": [7, 10, 20, 50],
+            "lengthMenu": [10, 25, 50, 100],
             "pageLength": 10,
             "lengthChange": false,
             "searching": false,
+            "ordering": true,
+            "info": true,
+            "paging": false, // Disable DataTables pagination as we're using Laravel's
             "responsive": {
                 details: false
             },

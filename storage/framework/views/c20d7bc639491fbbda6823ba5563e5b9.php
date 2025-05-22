@@ -302,6 +302,7 @@ unset($__errorArgs, $__bag); ?>
             const wrapper = document.createElement('div');
             wrapper.className = 'badge bg-secondary me-2 mb-2 d-flex align-items-center';
             wrapper.style.padding = '0.5em 0.75em';
+            wrapper.style.color = 'white'; // Ensure text is white
 
             // Hidden input for form submission
             const input = document.createElement('input');
@@ -314,6 +315,7 @@ unset($__errorArgs, $__bag); ?>
             const span = document.createElement('span');
             span.textContent = name;
             span.className = 'me-2';
+            span.style.color = 'white'; // Ensure text is white
             wrapper.appendChild(span);
 
             // Remove button

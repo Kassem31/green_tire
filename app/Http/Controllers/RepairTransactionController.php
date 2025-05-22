@@ -16,7 +16,9 @@ class RepairTransactionController extends Controller
      */
     public function index()
     {
-        $repairTransactions = RepairTransaction::with(['inspectionTransaction', 'repairSteps'])->get();
+        $repairTransactions = RepairTransaction::with(['inspectionTransaction', 'repairSteps'])
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
         return view('repair-transactions.index', compact('repairTransactions'));
     }
 
@@ -56,7 +58,7 @@ class RepairTransactionController extends Controller
             $query->whereDate('created_at', '<=', $request->date_to);
         }
 
-        $pendingTransactions = $query->orderBy('created_at', 'desc')->get();
+        $pendingTransactions = $query->orderBy('created_at', 'desc')->paginate(10);
         $tireTypes = \App\Models\TireType::all();
 
         return view('repair-transactions.pending', compact('pendingTransactions', 'tireTypes'));
